@@ -1,7 +1,1 @@
-﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
-  rpg.cpp
-c:\users\user\documents\github\xashtasks\xash_build4529_src\dlls\util.h(253): warning C4091: 'typedef ': ignored on left of '<unnamed-enum-point_hull>' when no variable is declared
-  hornetgun.cpp
-c:\users\user\documents\github\xashtasks\xash_build4529_src\dlls\util.h(253): warning C4091: 'typedef ': ignored on left of '<unnamed-enum-point_hull>' when no variable is declared
-  Generating Code...
-C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(1017,5): error MSB3191: Unable to create directory "D:\Xash3D\valve\cl_dlls\". Access to the path 'D:\Xash3D\valve\cl_dlls\' is denied.
+﻿
