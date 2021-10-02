@@ -120,8 +120,8 @@ void CSqueakGrenade :: Spawn( void )
 	UTIL_SetSize(pev, Vector( -4, -4, 0), Vector(4, 4, 8));
 	UTIL_SetOrigin( pev, pev->origin );
 
-	SetTouch( SuperBounceTouch );
-	SetThink( HuntThink );
+	SetTouch( &CSqueakGrenade::SuperBounceTouch );
+	SetThink( &CSqueakGrenade::HuntThink );
 	pev->nextthink = gpGlobals->time + 0.1;
 	m_flNextHunt = gpGlobals->time + 1E6;
 
@@ -483,7 +483,7 @@ void CSqueak::Holster( int skiplocal /* = 0 */ )
 	if ( !m_pPlayer->m_rgAmmo[ m_iPrimaryAmmoType ] )
 	{
 		m_pPlayer->pev->weapons &= ~(1<<WEAPON_SNARK);
-		SetThink( DestroyItem );
+		SetThink( &CBasePlayerItem::DestroyItem );
 		pev->nextthink = gpGlobals->time + 0.1;
 		return;
 	}

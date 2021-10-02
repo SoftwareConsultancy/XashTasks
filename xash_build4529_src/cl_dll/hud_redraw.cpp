@@ -89,7 +89,7 @@ int CHud :: Redraw( float flTime, int intermission )
 	m_fOldTime = m_flTime;	// save time of previous redraw
 	m_flTime = flTime;
 	m_flTimeDelta = (double)m_flTime - m_fOldTime;
-	static m_flShotTime = 0;
+	static double m_flShotTime = 0;
 	
 	// Clock was reset, reset delta
 	if ( m_flTimeDelta < 0 )
@@ -120,7 +120,7 @@ int CHud :: Redraw( float flTime, int intermission )
 		}
 	}
 
-	if (m_flShotTime && m_flShotTime < flTime)
+	if (m_flShotTime && m_flShotTime < (double)flTime)
 	{
 		gEngfuncs.pfnClientCmd("snapshot\n");
 		m_flShotTime = 0;
