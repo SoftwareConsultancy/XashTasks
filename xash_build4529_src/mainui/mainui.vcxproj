@@ -109,8 +109,8 @@
       <AdditionalDependencies>msvcrtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy $(TargetDir)menu.dll "D:\Xash3D\menu.dll"</Command>
-      <Outputs>D:\Xash3D\menu.dll;%(Outputs)</Outputs>
+      <Command>copy $(TargetDir)menu.dll $(SolutionDir)..\Xash3D\menu.dll</Command>
+      <Outputs>$(SolutionDir)..\Xash3D\menu.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -157,8 +157,8 @@
       <AdditionalDependencies>msvcrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy $(TargetDir)menu.dll "D:\Xash3D\menu.dll"</Command>
-      <Outputs>D:\Xash3D\menu.dll;%(Outputs)</Outputs>
+      <Command>copy $(TargetDir)menu.dll $(SolutionDir)..\Xash3D\menu.dll</Command>
+      <Outputs>$(SolutionDir)..\Xash3D\menu.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>

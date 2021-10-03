@@ -125,8 +125,8 @@
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy $(TargetDir)hl.dll "D:\Xash3D\valve\dlls\hl.dll"</Command>
-      <Outputs>D:\Xash3D\valve\dlls\hl.dll;%(Outputs)</Outputs>
+      <Command>copy $(TargetDir)hl.dll $(SolutionDir)..\Xash3D\valve\dlls\hl.dll</Command>
+      <Outputs>$(SolutionDir)..\Xash3D\valve\dlls\hl.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Profile|Win32'">
@@ -171,8 +171,8 @@
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy $(TargetDir)hl.dll "D:\Xash3D\valve\dlls\hl.dll"</Command>
-      <Outputs>D:\Xash3D\valve\dlls\hl.dll;%(Outputs)</Outputs>
+      <Command>copy $(TargetDir)hl.dll $(SolutionDir)..\Xash3D\valve\dlls\hl.dll</Command>
+      <Outputs>$(SolutionDir)..\Xash3D\valve\dlls\hl.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
