@@ -103,7 +103,7 @@ void CBreakable::KeyValue( KeyValueData* pkvd )
 	else if (FStrEq(pkvd->szKeyName, "spawnobject") )
 	{
 		int object = atoi( pkvd->szValue );
-		if ( object > 0 && object < ARRAYSIZE(pSpawnObjects) )
+		if ( object > 0 && object < ARRAYSIZE_XASH(pSpawnObjects) )
 			m_iszSpawnObject = MAKE_STRING( pSpawnObjects[object] );
 		pkvd->fHandled = TRUE;
 	}
@@ -161,7 +161,7 @@ void CBreakable::Spawn( void )
 		pev->playerclass = 1;
 	}
 
-	SetTouch( BreakTouch );
+	SetTouch( &CBreakable::BreakTouch );
 	if ( FBitSet( pev->spawnflags, SF_BREAK_TRIGGER_ONLY ) )		// Only break on trigger
 		SetTouch( NULL );
 
@@ -223,28 +223,28 @@ const char **CBreakable::MaterialSoundList( Materials precacheMaterial, int &sou
 	{
 	case matWood:
 		pSoundList = pSoundsWood;
-		soundCount = ARRAYSIZE(pSoundsWood);
+		soundCount = ARRAYSIZE_XASH(pSoundsWood);
 		break;
 	case matFlesh:
 		pSoundList = pSoundsFlesh;
-		soundCount = ARRAYSIZE(pSoundsFlesh);
+		soundCount = ARRAYSIZE_XASH(pSoundsFlesh);
 		break;
 	case matComputer:
 	case matUnbreakableGlass:
 	case matGlass:
 		pSoundList = pSoundsGlass;
-		soundCount = ARRAYSIZE(pSoundsGlass);
+		soundCount = ARRAYSIZE_XASH(pSoundsGlass);
 		break;
 
 	case matMetal:
 		pSoundList = pSoundsMetal;
-		soundCount = ARRAYSIZE(pSoundsMetal);
+		soundCount = ARRAYSIZE_XASH(pSoundsMetal);
 		break;
 
 	case matCinderBlock:
 	case matRocks:
 		pSoundList = pSoundsConcrete;
-		soundCount = ARRAYSIZE(pSoundsConcrete);
+		soundCount = ARRAYSIZE_XASH(pSoundsConcrete);
 		break;
 	
 	
@@ -459,7 +459,7 @@ void CBreakable::BreakTouch( CBaseEntity *pOther )
 		// play creaking sound here.
 		DamageSound();
 
-		SetThink ( Die );
+		SetThink ( &CBreakable::Die );
 		SetTouch( NULL );
 		
 		if ( m_flDelay == 0 )
@@ -597,7 +597,7 @@ void CBreakable::Die( void )
 	// The more negative pev->health, the louder
 	// the sound should be.
 
-	fvol = RANDOM_FLOAT(0.85, 1.0) + (abs(pev->health) / 100.0);
+	fvol = RANDOM_FLOAT(0.85, 1.0) + (fabs(pev->health) / 100.0);
 
 	if (fvol > 1.0)
 		fvol = 1.0;
@@ -752,7 +752,7 @@ void CBreakable::Die( void )
 	// Fire targets on break
 	SUB_UseTargets( NULL, USE_TOGGLE, 0 );
 
-	SetThink( SUB_Remove );
+	SetThink( &CBaseEntity::SUB_Remove );
 	SetNextThink( 0.1 );
 
 	if ( m_iszSpawnObject )
@@ -1106,24 +1106,24 @@ void CPushableMaker :: Spawn( void )
 	{
 		if( pev->spawnflags & SF_PUSHABLEMAKER_CYCLIC )
 		{
-			SetUse( CyclicUse );	// drop one monster each time we fire
+			SetUse( &CPushableMaker::CyclicUse );	// drop one monster each time we fire
 		}
 		else
 		{
-			SetUse( ToggleUse );	// so can be turned on/off
+			SetUse( &CPushableMaker::ToggleUse );	// so can be turned on/off
 		}
 
 		if( FBitSet ( pev->spawnflags, SF_PUSHABLEMAKER_START_ON ) )
 		{
 			// start making monsters as soon as monstermaker spawns
 			m_iState = STATE_ON;
-			SetThink( MakerThink );
+			SetThink( &CPushableMaker::MakerThink );
 		}
 		else
 		{
 			// wait to be activated.
 			m_iState = STATE_OFF;
-			SetThink( SUB_DoNothing );
+			SetThink( &CBaseEntity::SUB_DoNothing );
 		}
 	}
 	else
@@ -1131,7 +1131,7 @@ void CPushableMaker :: Spawn( void )
 			// no targetname, just start.
 			SetNextThink( m_flDelay );
 			m_iState = STATE_ON;
-			SetThink ( MakerThink );
+			SetThink ( &CPushableMaker::MakerThink );
 	}
 
 	m_flGround = 0;
@@ -1267,7 +1267,7 @@ void CPushableMaker :: ToggleUse ( CBaseEntity *pActivator, CBaseEntity *pCaller
 	else
 	{
 		m_iState = STATE_ON;
-		SetThink( MakerThink );
+		SetThink( &CPushableMaker::MakerThink );
 	}
 
 	SetNextThink( 0 );

@@ -95,7 +95,8 @@ mspriteframe_t *CSpriteModelRenderer :: GetSpriteFrame( int frame, float yaw )
 		// are positive, so we don't have to worry about division by zero
 		float targettime = tr.time - ((int)( tr.time / fullinterval )) * fullinterval;
 
-		for( int i = 0; i < (numframes - 1); i++ )
+		int i = 0;
+		for( i = 0; i < (numframes - 1); i++ )
 		{
 			if( pintervals[i] > targettime )
 				break;

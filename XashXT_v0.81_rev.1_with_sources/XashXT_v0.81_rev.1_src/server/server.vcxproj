@@ -106,14 +106,14 @@
       <SubSystem>Windows</SubSystem>
       <IgnoreSpecificDefaultLibraries>libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>.\server.def</ModuleDefinitionFile>
-      <OutputFile>.\..\temp\server\!debug\server.dll</OutputFile>
+      <OutputFile>.\..\temp\$(configuration)\server.dll</OutputFile>
       <ImportLibrary>.\..\temp\server\!debug\server.lib</ImportLibrary>
       <AdditionalDependencies>msvcrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy $(TargetDir)server.dll "D:\Xash3D\xash\bin\server.dll"</Command>
+      <Command>copy $(TargetDir)server.dll $(SolutionDir)..\..\Xash3D\xash\bin\server.dll</Command>
       <Message>Custom Build in progress</Message>
-      <Outputs>D:\Xash3D\xash\bin\server.dll;%(Outputs)</Outputs>
+      <Outputs>$(SolutionDir)..\..\Xash3D\xash\bin\server.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -160,9 +160,9 @@
       <AdditionalDependencies>msvcrt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy $(TargetDir)server.dll "D:\Xash3D\xash\bin\server.dll"</Command>
+      <Command>copy $(TargetDir)server.dll $(SolutionDir)..\..\Xash3D\xash\bin\server.dll</Command>
       <Message>Custom Build in progress</Message>
-      <Outputs>D:\Xash3D\xash\bin\server.dll;%(Outputs)</Outputs>
+      <Outputs>$(SolutionDir)..\..\Xash3D\xash\bin\server.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -2584,7 +2584,8 @@ void CStudioModelRenderer :: StudioMergeBones( matrix3x4 bones[], matrix3x4 cach
 
 	for( int i = 0; i < m_pStudioHeader->numbones; i++ ) 
 	{
-		for( int j = 0; j < m_pParentHeader->numbones; j++ )
+		int j = 0;
+		for( j = 0; j < m_pParentHeader->numbones; j++ )
 		{
 			if( !Q_stricmp( pchildbones[i].name, pparentbones[j].name ))
 			{
@@ -3198,7 +3199,8 @@ void CStudioModelRenderer :: StudioDrawShell( void )
 
 	gEngfuncs.pTriAPI->SpriteTexture( m_pChromeSprite, 0 );
 
-	for( int i = 0; i < m_pStudioHeader->numbodyparts; i++ )
+	int i = 0;
+	for( i = 0; i < m_pStudioHeader->numbodyparts; i++ )
 	{
 		StudioSetupModel( i, (void **)&m_pBodyPart, (void **)&m_pSubModel );
 		IEngineStudio.GL_SetRenderMode( kRenderTransAdd );
@@ -3266,7 +3268,7 @@ void CStudioModelRenderer :: StudioDrawHulls( void )
 			p[j] = m_pModelInstance->m_pbones[pbbox[i].bone].VectorTransform( tmp );
 		}
 
-		j = (pbbox[i].group % ARRAYSIZE( g_hullcolor ));
+		j = (pbbox[i].group % ARRAYSIZE_XASH( g_hullcolor ));
 
 		gEngfuncs.pTriAPI->Begin( TRI_QUADS );
 		gEngfuncs.pTriAPI->Color4f( g_hullcolor[j][0], g_hullcolor[j][1], g_hullcolor[j][2], alpha );

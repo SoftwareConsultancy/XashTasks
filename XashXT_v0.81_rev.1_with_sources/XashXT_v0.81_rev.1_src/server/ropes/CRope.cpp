@@ -277,7 +277,7 @@ void CRope :: Think( void )
 
 	if( ShouldCreak() )
 	{
-		EMIT_SOUND( edict(), CHAN_BODY, g_pszCreakSounds[RANDOM_LONG( 0, ARRAYSIZE( g_pszCreakSounds ) - 1 )], VOL_NORM, ATTN_NORM );
+		EMIT_SOUND( edict(), CHAN_BODY, g_pszCreakSounds[RANDOM_LONG( 0, ARRAYSIZE_XASH( g_pszCreakSounds ) - 1 )], VOL_NORM, ATTN_NORM );
 	}
 
 	SendUpdateBones();

@@ -192,7 +192,7 @@ BEGIN_DATADESC( CBaseTank )
 	DEFINE_FIELD( m_barrelPos, FIELD_VECTOR ),
 END_DATADESC()
 
-#define MAX_FIRING_SPREADS		ARRAYSIZE( gTankSpread )
+#define MAX_FIRING_SPREADS		ARRAYSIZE_XASH( gTankSpread )
 
 static Vector gTankSpread[] =
 {

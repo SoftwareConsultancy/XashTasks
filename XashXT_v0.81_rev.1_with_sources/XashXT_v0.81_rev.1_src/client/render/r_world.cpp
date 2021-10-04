@@ -1981,7 +1981,8 @@ void R_DrawBrushList( void )
 	pglBindVertexArray( world->vertex_array_object );
 	r_stats.c_world_polys += tr.num_draw_surfaces;
 
-	for( int i = 0; i < tr.num_draw_surfaces; i++ )
+	int i = 0;
+	for( i = 0; i < tr.num_draw_surfaces; i++ )
 	{
 		gl_bmodelface_t *entry = &tr.draw_surfaces[i];
 		mextrasurf_t *es = entry->surface->info;

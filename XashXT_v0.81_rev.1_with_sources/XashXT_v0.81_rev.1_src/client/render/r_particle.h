@@ -108,7 +108,7 @@ public:
 	RandomRange	m_WindStrength;
 	RandomRange	m_WindYaw;
 
-	HSPRITE		m_hSprite;
+	HSPRITE_XASH		m_hSprite;
 	CParticleType	*m_pOverlayType;
 
 	RandomRange	m_Drag;

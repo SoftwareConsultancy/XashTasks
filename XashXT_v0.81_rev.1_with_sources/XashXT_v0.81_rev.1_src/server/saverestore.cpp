@@ -24,7 +24,7 @@
 #include "util.h"
 #include "cbase.h"
 
-#define ENTVARS_COUNT	ARRAYSIZE( gEntvarsDescription )
+#define ENTVARS_COUNT	ARRAYSIZE_XASH( gEntvarsDescription )
 
 TYPEDESCRIPTION gEntvarsDescription[] = 
 {

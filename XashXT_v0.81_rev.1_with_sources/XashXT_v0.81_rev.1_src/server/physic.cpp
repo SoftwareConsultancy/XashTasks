@@ -1569,13 +1569,15 @@ int SV_FlyMove( CBaseEntity *pEntity, float time, TraceResult *steptrace )
 		numplanes++;
 
 		// modify original_velocity so it parallels all of the clip planes
-		for( int i = 0; i < numplanes; i++ )
+		int i = 0;
+		for( i = 0; i < numplanes; i++ )
 		{
 			float overbounce = SV_CalcOverBounce( pEntity, &trace );
 
 			SV_ClipVelocity( original_velocity, planes[i], new_velocity, overbounce );
 
-			for( int j = 0; j < numplanes; j++ )
+			int j = 0;
+			for( j = 0; j < numplanes; j++ )
 			{
 				if( j != i )
 				{

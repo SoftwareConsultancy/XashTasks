@@ -413,7 +413,7 @@ Schedule_t slControllerChaseEnemy[] =
 {
 	{ 
 		tlControllerChaseEnemy,
-		ARRAYSIZE ( tlControllerChaseEnemy ),
+		ARRAYSIZE_XASH ( tlControllerChaseEnemy ),
 		bits_COND_NEW_ENEMY			|
 		bits_COND_TASK_FAILED,
 		0,
@@ -435,7 +435,7 @@ Schedule_t	slControllerStrafe[] =
 {
 	{ 
 		tlControllerStrafe,
-		ARRAYSIZE ( tlControllerStrafe ), 
+		ARRAYSIZE_XASH ( tlControllerStrafe ), 
 		bits_COND_NEW_ENEMY,
 		0,
 		"ControllerStrafe"
@@ -455,7 +455,7 @@ Schedule_t	slControllerTakeCover[] =
 {
 	{ 
 		tlControllerTakeCover,
-		ARRAYSIZE ( tlControllerTakeCover ), 
+		ARRAYSIZE_XASH ( tlControllerTakeCover ), 
 		bits_COND_NEW_ENEMY,
 		0,
 		"ControllerTakeCover"
@@ -475,7 +475,7 @@ Schedule_t	slControllerFail[] =
 {
 	{
 		tlControllerFail,
-		ARRAYSIZE ( tlControllerFail ),
+		ARRAYSIZE_XASH ( tlControllerFail ),
 		0,
 		0,
 		"ControllerFail"
@@ -1180,8 +1180,8 @@ void CControllerHeadBall :: Spawn( void )
 
 	UTIL_SetSize( pev, g_vecZero, g_vecZero );
 
-	SetThink( HuntThink );
-	SetTouch( BounceTouch );
+	SetThink( &CControllerHeadBall::HuntThink );
+	SetTouch( &CControllerHeadBall::BounceTouch );
 
 	m_vecIdeal = Vector( 0, 0, 0 );
 
@@ -1267,7 +1267,7 @@ void CControllerHeadBall :: HuntThink( void  )
 
 		m_flNextAttack = gpGlobals->time + 3.0;
 
-		SetThink( DieThink );
+		SetThink( &CControllerHeadBall::DieThink );
 		pev->nextthink = gpGlobals->time + 0.3;
 	}
 
@@ -1380,8 +1380,8 @@ void CControllerZapBall :: Spawn( void )
 
 	UTIL_SetSize( pev, g_vecZero, g_vecZero );
 
-	SetThink( AnimateThink );
-	SetTouch( ExplodeTouch );
+	SetThink( &CControllerZapBall::AnimateThink );
+	SetTouch( &CControllerZapBall::ExplodeTouch );
 
 	m_hOwner = Instance( pev->owner );
 	pev->dmgtime = gpGlobals->time; // keep track of when ball spawned

@@ -124,7 +124,7 @@ void ScaleColors( int &r, int &g, int &b, int a )
 	b = (int)(b * x);
 }
 
-HSPRITE LoadSprite( const char *pszName )
+HSPRITE_XASH LoadSprite( const char *pszName )
 {
 	char sz[256]; 
 	int i;
@@ -281,9 +281,9 @@ bool Mod_BoxVisible( const Vector mins, const Vector maxs, const byte *visbits )
 	if( !visbits || !mins || !maxs )
 		return true;
 
-	count = Mod_BoxLeafnums( mins, maxs, leafList, ARRAYSIZE( leafList ), &headnode );
+	count = Mod_BoxLeafnums( mins, maxs, leafList, ARRAYSIZE_XASH( leafList ), &headnode );
 
-	if( count < ARRAYSIZE( leafList ))
+	if( count < ARRAYSIZE_XASH( leafList ))
 		headnode = NULL; // ignore headnode if we not overflowed
 
 	for( i = 0; i < count; i++ )
@@ -911,7 +911,7 @@ char *ParseHudSprite( char *pfile, char *psz, client_sprite_t *result )
 					gEngfuncs.COM_FreeFile( testSprite );
 
 					// fill structure at default
-					HSPRITE m_hSprite = SPR_Load( tempSprite.szSprite );
+					HSPRITE_XASH m_hSprite = SPR_Load( tempSprite.szSprite );
 
 					width = SPR_Width( m_hSprite, 0 );
 					height = SPR_Height( m_hSprite, 0 );

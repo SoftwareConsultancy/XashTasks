@@ -461,7 +461,7 @@ void CPhysEntity :: Killed( entvars_t *pevAttacker, int iGib )
 	// The more negative pev->health, the louder
 	// the sound should be.
 
-	fvol = RANDOM_FLOAT(0.85, 1.0) + (abs(pev->health) / 100.0);
+	fvol = RANDOM_FLOAT(0.85, 1.0) + (fabs(pev->health) / 100.0);
 
 	if (fvol > 1.0)
 		fvol = 1.0;
@@ -580,7 +580,7 @@ void CPhysEntity :: Killed( entvars_t *pevAttacker, int iGib )
 	// Fire targets on break
 	SUB_UseTargets( NULL, USE_TOGGLE, 0 );
 
-	SetThink( SUB_Remove );
+	SetThink( &CBaseEntity::SUB_Remove );
 	SetNextThink( 0.1 );
 }
 
@@ -659,24 +659,24 @@ void CPhysBoxMaker :: Spawn( void )
 	{
 		if( pev->spawnflags & SF_PHYSBOXMAKER_CYCLIC )
 		{
-			SetUse( CyclicUse );	// drop one monster each time we fire
+			SetUse( &CPhysBoxMaker::CyclicUse );	// drop one monster each time we fire
 		}
 		else
 		{
-			SetUse( ToggleUse );	// so can be turned on/off
+			SetUse( &CPhysBoxMaker::ToggleUse );	// so can be turned on/off
 		}
 
 		if( FBitSet ( pev->spawnflags, SF_PHYSBOXMAKER_START_ON ) )
 		{
 			// start making monsters as soon as monstermaker spawns
 			m_iState = STATE_ON;
-			SetThink( MakerThink );
+			SetThink( &CPhysBoxMaker::MakerThink );
 		}
 		else
 		{
 			// wait to be activated.
 			m_iState = STATE_OFF;
-			SetThink( SUB_DoNothing );
+			SetThink( &CBaseEntity::SUB_DoNothing );
 		}
 	}
 	else
@@ -684,7 +684,7 @@ void CPhysBoxMaker :: Spawn( void )
 			// no targetname, just start.
 			SetNextThink( m_flDelay );
 			m_iState = STATE_ON;
-			SetThink ( MakerThink );
+			SetThink ( &CPhysBoxMaker::MakerThink );
 	}
 
 	m_flGround = 0;
@@ -807,7 +807,7 @@ void CPhysBoxMaker :: ToggleUse ( CBaseEntity *pActivator, CBaseEntity *pCaller,
 	else
 	{
 		m_iState = STATE_ON;
-		SetThink( MakerThink );
+		SetThink( &CPhysBoxMaker::MakerThink );
 	}
 
 	SetNextThink( 0 );

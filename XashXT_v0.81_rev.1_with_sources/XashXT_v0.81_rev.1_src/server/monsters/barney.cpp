@@ -112,7 +112,7 @@ Schedule_t	slBaFollow[] =
 {
 	{
 		tlBaFollow,
-		ARRAYSIZE ( tlBaFollow ),
+		ARRAYSIZE_XASH ( tlBaFollow ),
 		bits_COND_NEW_ENEMY		|
 		bits_COND_LIGHT_DAMAGE	|
 		bits_COND_HEAVY_DAMAGE	|
@@ -138,7 +138,7 @@ Schedule_t slBarneyEnemyDraw[] =
 {
 	{
 		tlBarneyEnemyDraw,
-		ARRAYSIZE ( tlBarneyEnemyDraw ),
+		ARRAYSIZE_XASH ( tlBarneyEnemyDraw ),
 		0,
 		0,
 		"Barney Enemy Draw"
@@ -157,7 +157,7 @@ Schedule_t	slBaFaceTarget[] =
 {
 	{
 		tlBaFaceTarget,
-		ARRAYSIZE ( tlBaFaceTarget ),
+		ARRAYSIZE_XASH ( tlBaFaceTarget ),
 		bits_COND_CLIENT_PUSH	|
 		bits_COND_NEW_ENEMY		|
 		bits_COND_LIGHT_DAMAGE	|
@@ -182,7 +182,7 @@ Schedule_t	slIdleBaStand[] =
 {
 	{ 
 		tlIdleBaStand,
-		ARRAYSIZE ( tlIdleBaStand ), 
+		ARRAYSIZE_XASH ( tlIdleBaStand ), 
 		bits_COND_NEW_ENEMY		|
 		bits_COND_LIGHT_DAMAGE	|
 		bits_COND_HEAVY_DAMAGE	|
@@ -439,7 +439,7 @@ void CBarney :: Spawn()
 	m_afCapability		= bits_CAP_HEAR | bits_CAP_TURN_HEAD | bits_CAP_DOORS_GROUP;
 
 	MonsterInit();
-	SetUse( FollowerUse );
+	SetUse( &CTalkMonster::FollowerUse );
 }
 
 //=========================================================

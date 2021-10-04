@@ -163,7 +163,7 @@ void CStomp::Think( void )
 				pSprite->SetAbsVelocity( Vector(RANDOM_FLOAT(-200,200),RANDOM_FLOAT(-200,200),175));
 				// pSprite->AnimateAndDie( RANDOM_FLOAT( 8.0, 12.0 ) );
 				pSprite->pev->nextthink = gpGlobals->time + 0.3;
-				pSprite->SetThink( SUB_Remove );
+				pSprite->SetThink( &CBaseEntity::SUB_Remove );
 				pSprite->SetTransparency( kRenderTransAdd, 255, 255, 255, 255, kRenderFxFadeFast );
 			}
 		}
@@ -403,7 +403,7 @@ Schedule_t	slGargFlame[] =
 {
 	{ 
 		tlGargFlame,
-		ARRAYSIZE ( tlGargFlame ), 
+		ARRAYSIZE_XASH ( tlGargFlame ), 
 		0,
 		0,
 		"GargFlame"
@@ -423,7 +423,7 @@ Schedule_t	slGargSwipe[] =
 {
 	{ 
 		tlGargSwipe,
-		ARRAYSIZE ( tlGargSwipe ), 
+		ARRAYSIZE_XASH ( tlGargSwipe ), 
 		bits_COND_CAN_MELEE_ATTACK2,
 		0,
 		"GargSwipe"
@@ -472,7 +472,7 @@ void CGargantua::StompAttack( void )
 	UTIL_TraceLine( vecStart, vecEnd, ignore_monsters, edict(), &trace );
 	CStomp::StompCreate( vecStart, trace.vecEndPos, 0 );
 	UTIL_ScreenShake( GetAbsOrigin(), 12.0, 100.0, 2.0, 1000 );
-	EMIT_SOUND_DYN( edict(), CHAN_WEAPON, pStompSounds[ RANDOM_LONG(0,ARRAYSIZE(pStompSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM + RANDOM_LONG(-10,10) );
+	EMIT_SOUND_DYN( edict(), CHAN_WEAPON, pStompSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pStompSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM + RANDOM_LONG(-10,10) );
 
 	UTIL_TraceLine( GetAbsOrigin(), GetAbsOrigin() - Vector( 0, 0, 20 ), ignore_monsters, edict(), &trace );
 
@@ -785,37 +785,37 @@ void CGargantua :: Precache()
 	gGargGibModel = PRECACHE_MODEL( GARG_GIB_MODEL );
 	PRECACHE_SOUND( GARG_STOMP_BUZZ_SOUND );
 
-	for ( i = 0; i < ARRAYSIZE( pAttackHitSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pAttackHitSounds ); i++ )
 		PRECACHE_SOUND((char *)pAttackHitSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pBeamAttackSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pBeamAttackSounds ); i++ )
 		PRECACHE_SOUND((char *)pBeamAttackSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pAttackMissSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pAttackMissSounds ); i++ )
 		PRECACHE_SOUND((char *)pAttackMissSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pRicSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pRicSounds ); i++ )
 		PRECACHE_SOUND((char *)pRicSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pFootSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pFootSounds ); i++ )
 		PRECACHE_SOUND((char *)pFootSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pIdleSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pIdleSounds ); i++ )
 		PRECACHE_SOUND((char *)pIdleSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pAlertSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pAlertSounds ); i++ )
 		PRECACHE_SOUND((char *)pAlertSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pPainSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pPainSounds ); i++ )
 		PRECACHE_SOUND((char *)pPainSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pAttackSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pAttackSounds ); i++ )
 		PRECACHE_SOUND((char *)pAttackSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pStompSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pStompSounds ); i++ )
 		PRECACHE_SOUND((char *)pStompSounds[i]);
 
-	for ( i = 0; i < ARRAYSIZE( pBreatheSounds ); i++ )
+	for ( i = 0; i < ARRAYSIZE_XASH( pBreatheSounds ); i++ )
 		PRECACHE_SOUND((char *)pBreatheSounds[i]);
 }	
 
@@ -835,7 +835,7 @@ void CGargantua::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vec
 	{
 		if ( m_painSoundTime < gpGlobals->time )
 		{
-			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pPainSounds[ RANDOM_LONG(0,ARRAYSIZE(pPainSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM );
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pPainSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pPainSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM );
 			m_painSoundTime = gpGlobals->time + RANDOM_FLOAT( 2.5, 4 );
 		}
 	}
@@ -849,7 +849,7 @@ void CGargantua::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vec
 			UTIL_Ricochet( ptr->vecEndPos, RANDOM_FLOAT(0.5,1.5) );
 			pev->dmgtime = gpGlobals->time;
 //			if ( RANDOM_LONG(0,100) < 25 )
-//				EMIT_SOUND_DYN( ENT(pev), CHAN_BODY, pRicSounds[ RANDOM_LONG(0,ARRAYSIZE(pRicSounds)-1) ], 1.0, ATTN_NORM, 0, PITCH_NORM );
+//				EMIT_SOUND_DYN( ENT(pev), CHAN_BODY, pRicSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pRicSounds)-1) ], 1.0, ATTN_NORM, 0, PITCH_NORM );
 		}
 		flDamage = 0;
 	}
@@ -990,10 +990,10 @@ void CGargantua::HandleAnimEvent(MonsterEvent_t *pEvent)
 					//UTIL_MakeVectors(GetAbsAngles());	// called by CheckTraceHullAttack
 					pHurt->SetAbsVelocity( pHurt->GetAbsVelocity() - gpGlobals->v_right * 100 );
 				}
-				EMIT_SOUND_DYN ( edict(), CHAN_WEAPON, pAttackHitSounds[ RANDOM_LONG(0,ARRAYSIZE(pAttackHitSounds)-1) ], 1.0, ATTN_NORM, 0, 50 + RANDOM_LONG(0,15) );
+				EMIT_SOUND_DYN ( edict(), CHAN_WEAPON, pAttackHitSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pAttackHitSounds)-1) ], 1.0, ATTN_NORM, 0, 50 + RANDOM_LONG(0,15) );
 			}
 			else // Play a random attack miss sound
-				EMIT_SOUND_DYN ( edict(), CHAN_WEAPON, pAttackMissSounds[ RANDOM_LONG(0,ARRAYSIZE(pAttackMissSounds)-1) ], 1.0, ATTN_NORM, 0, 50 + RANDOM_LONG(0,15) );
+				EMIT_SOUND_DYN ( edict(), CHAN_WEAPON, pAttackMissSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pAttackMissSounds)-1) ], 1.0, ATTN_NORM, 0, 50 + RANDOM_LONG(0,15) );
 
 			Vector forward;
 			UTIL_MakeVectorsPrivate( GetAbsAngles(), forward, NULL, NULL );
@@ -1003,7 +1003,7 @@ void CGargantua::HandleAnimEvent(MonsterEvent_t *pEvent)
 	case GARG_AE_RIGHT_FOOT:
 	case GARG_AE_LEFT_FOOT:
 		UTIL_ScreenShake( GetAbsOrigin(), 4.0, 3.0, 1.0, 750 );
-		EMIT_SOUND_DYN ( edict(), CHAN_BODY, pFootSounds[ RANDOM_LONG(0,ARRAYSIZE(pFootSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM + RANDOM_LONG(-10,10) );
+		EMIT_SOUND_DYN ( edict(), CHAN_BODY, pFootSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pFootSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM + RANDOM_LONG(-10,10) );
 		break;
 
 	case GARG_AE_STOMP:
@@ -1012,7 +1012,7 @@ void CGargantua::HandleAnimEvent(MonsterEvent_t *pEvent)
 		break;
 
 	case GARG_AE_BREATHE:
-		EMIT_SOUND_DYN ( edict(), CHAN_VOICE, pBreatheSounds[ RANDOM_LONG(0,ARRAYSIZE(pBreatheSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM + RANDOM_LONG(-10,10) );
+		EMIT_SOUND_DYN ( edict(), CHAN_VOICE, pBreatheSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pBreatheSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM + RANDOM_LONG(-10,10) );
 		break;
 
 	default:
@@ -1093,7 +1093,7 @@ void CGargantua::StartTask( Task_t *pTask )
 
 	case TASK_SOUND_ATTACK:
 		if ( RANDOM_LONG(0,100) < 30 )
-			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pAttackSounds[ RANDOM_LONG(0,ARRAYSIZE(pAttackSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM );
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pAttackSounds[ RANDOM_LONG(0,ARRAYSIZE_XASH(pAttackSounds)-1) ], 1.0, ATTN_GARG, 0, PITCH_NORM );
 		TaskComplete();
 		break;
 	
@@ -1123,7 +1123,7 @@ void CGargantua::RunTask( Task_t *pTask )
 			pev->rendercolor.z = 0;
 			StopAnimation();
 			pev->nextthink = gpGlobals->time + 0.15;
-			SetThink( SUB_Remove );
+			SetThink( &CBaseEntity::SUB_Remove );
 			int i;
 			int parts = MODEL_FRAMES( gGargGibModel );
 			for ( i = 0; i < 10; i++ )
@@ -1142,7 +1142,7 @@ void CGargantua::RunTask( Task_t *pTask )
 				pGib->SetAbsOrigin( GetAbsOrigin() );
 				pGib->SetAbsVelocity( UTIL_RandomBloodVector() * RANDOM_FLOAT( 300, 500 ));
 				pGib->SetNextThink( 1.25 );
-				pGib->SetThink( SUB_FadeOut );
+				pGib->SetThink( &CBaseEntity::SUB_FadeOut );
 			}
 
 			Vector vecOrigin = GetAbsOrigin();
@@ -1362,6 +1362,6 @@ void SpawnExplosion( Vector center, float randomRange, float time, int magnitude
 	pExplosion->pev->spawnflags |= SF_ENVEXPLOSION_NODAMAGE;
 
 	pExplosion->Spawn();
-	pExplosion->SetThink( CBaseEntity::SUB_CallUseToggle );
+	pExplosion->SetThink( &CBaseEntity::SUB_CallUseToggle );
 	pExplosion->pev->nextthink = gpGlobals->time + time;
 }

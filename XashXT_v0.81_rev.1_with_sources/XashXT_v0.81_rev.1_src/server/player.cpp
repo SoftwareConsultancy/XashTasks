@@ -761,7 +761,7 @@ void CBasePlayer::PackDeadPlayerItems( void )
 	vecAngles.z = 0;
 
 	pWeaponBox->SetAbsAngles( vecAngles );
-	pWeaponBox->SetThink( CWeaponBox::Kill );
+	pWeaponBox->SetThink( &CWeaponBox::Kill );
 	pWeaponBox->SetNextThink( 120 );
 
 	// back these two lists up to their first elements
@@ -981,7 +981,7 @@ void CBasePlayer::Killed( entvars_t *pevAttacker, int iGib )
 	vecAngles.z = 0;
 	SetAbsAngles( vecAngles );
 
-	SetThink(PlayerDeathThink);
+	SetThink(&CBasePlayer::PlayerDeathThink);
 	pev->nextthink = gpGlobals->time + 0.1;
 }
 
@@ -2201,7 +2201,7 @@ void CBasePlayer::CheckTimeBasedDamage()
 		return;
 
 	// only check for time based damage approx. every 2 seconds
-	if (abs(gpGlobals->time - m_tbdPrev) < 2.0)
+	if (fabs(gpGlobals->time - m_tbdPrev) < 2.0)
 		return;
 	
 	m_tbdPrev = gpGlobals->time;
@@ -3507,7 +3507,7 @@ void CBloodSplat :: Spawn( CBaseEntity *pOwner )
 	SetAbsAngles( pOwner->pev->v_angle );
 	pev->owner = pOwner->edict();
 
-	SetThink( Spray );
+	SetThink( &CBloodSplat::Spray );
 	SetNextThink( 0.1 );
 }
 
@@ -3527,7 +3527,7 @@ void CBloodSplat::Spray ( void )
 		else UTIL_BloodDecalTrace( &tr, BLOOD_COLOR_RED );
 	}
 
-	SetThink( SUB_Remove );
+	SetThink( &CBaseEntity::SUB_Remove );
 	SetNextThink( 0.1 );
 }
 
@@ -5161,7 +5161,8 @@ void CPlayerKeyCatcher :: KeyValue( KeyValueData *pkvd )
 	}
 	else if( FStrEq( pkvd->szKeyName, "m_iszKeyToCatch" ))
 	{
-		for( int i = 0; i < ARRAYSIZE( gPlayerButtonTable ); i++ )
+		int  i = 0;
+		for( i = 0; i < ARRAYSIZE_XASH( gPlayerButtonTable ); i++ )
 		{
 			if( !Q_stricmp( pkvd->szValue, gPlayerButtonTable[i].buttonName ))
 			{
@@ -5170,7 +5171,7 @@ void CPlayerKeyCatcher :: KeyValue( KeyValueData *pkvd )
 			} 
 		}
 
-		if( i == ARRAYSIZE( gPlayerButtonTable ))
+		if( i == ARRAYSIZE_XASH( gPlayerButtonTable ))
 			ALERT( at_error, "%s has invalid keyname %s\n", GetClassname(), pkvd->szValue );
 		pkvd->fHandled = TRUE;
 	}
@@ -5299,7 +5300,7 @@ void CRevertSaved :: Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYP
 {
 	UTIL_ScreenFadeAll( pev->rendercolor, Duration(), HoldTime(), pev->renderamt, FFADE_OUT );
 	pev->nextthink = gpGlobals->time + MessageTime();
-	SetThink( MessageThink );
+	SetThink( &CRevertSaved::MessageThink );
 }
 
 
@@ -5310,7 +5311,7 @@ void CRevertSaved :: MessageThink( void )
 	if ( nextThink > 0 ) 
 	{
 		pev->nextthink = gpGlobals->time + nextThink;
-		SetThink( LoadThink );
+		SetThink( &CRevertSaved::LoadThink );
 	}
 	else
 		LoadThink();

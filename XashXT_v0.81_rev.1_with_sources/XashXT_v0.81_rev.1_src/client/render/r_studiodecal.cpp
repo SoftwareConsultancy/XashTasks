@@ -934,7 +934,8 @@ int CStudioModelRenderer :: GetDecalMaterial( DecalModelList_t& decalList, int d
 	if( !create && !hProgram )
 		return 0xFFFF; // create a new material with invalid shader
 
-	for( word j = decalList.m_FirstMaterial; j != m_DecalMaterial.InvalidIndex(); j = m_DecalMaterial.Next( j ))
+	word j = 0;
+	for( j = decalList.m_FirstMaterial; j != m_DecalMaterial.InvalidIndex(); j = m_DecalMaterial.Next( j ))
 	{
 		DecalMaterial_t *pdecal = &m_DecalMaterial[j];
 

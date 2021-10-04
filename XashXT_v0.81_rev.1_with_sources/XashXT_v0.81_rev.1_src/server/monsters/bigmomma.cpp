@@ -817,7 +817,7 @@ Schedule_t	slBigNode[] =
 {
 	{ 
 		tlBigNode,
-		ARRAYSIZE ( tlBigNode ), 
+		ARRAYSIZE_XASH ( tlBigNode ), 
 		0,
 		0,
 		"Big Node"
@@ -835,7 +835,7 @@ Schedule_t	slNodeFail[] =
 {
 	{ 
 		tlNodeFail,
-		ARRAYSIZE ( tlNodeFail ), 
+		ARRAYSIZE_XASH ( tlNodeFail ), 
 		0,
 		0,
 		"NodeFail"
@@ -1173,7 +1173,7 @@ CBMortar *CBMortar::Shoot( edict_t *pOwner, Vector vecStart, Vector vecVelocity 
 	pSpit->SetAbsVelocity( vecVelocity );
 	pSpit->pev->owner = pOwner;
 	pSpit->pev->scale = 2.5;
-	pSpit->SetThink ( Animate );
+	pSpit->SetThink ( &CBMortar::Animate );
 	pSpit->pev->nextthink = gpGlobals->time + 0.1;
 
 	return pSpit;

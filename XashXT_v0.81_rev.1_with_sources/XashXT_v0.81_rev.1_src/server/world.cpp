@@ -262,15 +262,15 @@ void CDecal :: Spawn( void )
 
 	if ( FStringNull ( pev->targetname ) )
 	{
-		SetThink( StaticDecal );
+		SetThink( &CDecal::StaticDecal );
 		// if there's no targetname, the decal will spray itself on as soon as the world is done spawning.
 		pev->nextthink = gpGlobals->time;
 	}
 	else
 	{
 		// if there IS a targetname, the decal sprays itself on when it is triggered.
-		SetThink ( SUB_DoNothing );
-		SetUse(TriggerDecal);
+		SetThink ( &CBaseEntity::SUB_DoNothing );
+		SetUse( &CDecal::TriggerDecal );
 	}
 }
 
@@ -296,7 +296,7 @@ void CDecal :: TriggerDecal ( CBaseEntity *pActivator, CBaseEntity *pCaller, USE
 			WRITE_SHORT( (int)VARS( trace.pHit )->modelindex );
 	MESSAGE_END();
 
-	SetThink( SUB_Remove );
+	SetThink( &CBaseEntity::SUB_Remove );
 	SetNextThink( 0.1 );
 }
 
@@ -531,7 +531,7 @@ int CGlobalState::Save( CSave &save )
 	if ( !save.WriteFields( "GLOBAL", this, NULL, m_DataMap.dataDesc, m_DataMap.dataNumFields ) )
 		return 0;
 
-	DATAMAP *pMap = &globalentity_t.m_DataMap;
+	DATAMAP *pMap = &globalentity_t::m_DataMap;
 	
 	pEntity = m_pList;
 	for ( i = 0; i < m_listCount && pEntity; i++ )
@@ -555,7 +555,7 @@ int CGlobalState::Restore( CRestore &restore )
 	if ( !restore.ReadFields( "GLOBAL", this, NULL, m_DataMap.dataDesc, m_DataMap.dataNumFields ) )
 		return 0;
 
-	DATAMAP *pMap = &globalentity_t.m_DataMap;
+	DATAMAP *pMap = &globalentity_t::m_DataMap;
 	
 	listCount = m_listCount;	// Get new list count
 	m_listCount = 0;				// Clear loaded data
@@ -726,7 +726,7 @@ void CWorld :: Precache( void )
 	// 63 testing
 	LIGHT_STYLE(63, "a");
 
-	for( i = 0; i < ARRAYSIZE(gDecals); i++ )
+	for( i = 0; i < ARRAYSIZE_XASH(gDecals); i++ )
 		gDecals[i].index = DECAL_INDEX( gDecals[i].name );
 
 // make sure the .BIN file is newer than the .BSP file.
@@ -785,7 +785,7 @@ void CWorld :: Precache( void )
 		CBaseEntity *pEntity = CBaseEntity::Create( "env_message", g_vecZero, g_vecZero, NULL );
 		if ( pEntity )
 		{
-			pEntity->SetThink( SUB_CallUseToggle );
+			pEntity->SetThink( &CBaseEntity::SUB_CallUseToggle );
 			pEntity->pev->message = pev->netname;
 			pev->netname = 0;
 			pEntity->pev->nextthink = gpGlobals->time + 0.3;

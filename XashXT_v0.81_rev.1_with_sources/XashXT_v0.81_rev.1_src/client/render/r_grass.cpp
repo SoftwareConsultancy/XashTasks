@@ -705,7 +705,8 @@ void R_ReLightGrass( msurface_t *surf, bool force )
 	if( !hdr || m_bGrassUseVBO )
 		return;
 
-	for( int maps = 0; maps < MAXLIGHTMAPS && surf->styles[maps] != 255; maps++ )
+	int maps = 0;
+	for( maps = 0; maps < MAXLIGHTMAPS && surf->styles[maps] != 255; maps++ )
 	{
 		if( force || ( tr.lightstylevalue[surf->styles[maps]] != hdr->cached_light[maps] ))
 		{
@@ -1044,7 +1045,8 @@ find or add unique texture for grass
 */
 byte R_GrassTextureForName( const char *name )
 {
-	for( byte i = 0; i < GRASS_TEXTURES && grasstexs[i].name[0]; i++ )
+	int i = 0;
+	for( i = 0; i < GRASS_TEXTURES && grasstexs[i].name[0]; i++ )
 	{
 		if( !Q_stricmp( grasstexs[i].name, name ))
 			return i;	// found
@@ -1060,7 +1062,7 @@ byte R_GrassTextureForName( const char *name )
 		grasstexs[i].gl_texturenum = tr.defaultTexture;
 	}
 
-	return i;
+	return (byte)i;
 }
 
 /*
@@ -1274,7 +1276,7 @@ bool R_AddGrassToChain( msurface_t *surf, CFrustum *frustum, bool lightpass, mwo
 	float fadestart = r_grass_fade_start->value;
 	if( fadestart < GRASS_ANIM_DIST ) 
 		fadestart = GRASS_ANIM_DIST;
-	float fadedist = abs( r_grass_fade_dist->value );
+	float fadedist = fabs( r_grass_fade_dist->value );
 	float fadeend = fadestart + fadedist;	// draw_dist
 
 	if( es->grasscount && !hdr )
@@ -1441,7 +1443,7 @@ void R_UnloadFarGrass( void )
 
 	if( draw_dist < GRASS_ANIM_DIST )
 		draw_dist = GRASS_ANIM_DIST;
-	draw_dist += abs( r_grass_fade_dist->value );
+	draw_dist += fabs( r_grass_fade_dist->value );
 
 	// check surfaces
 	for( int i = 0; i < worldmodel->numsurfaces; i++ )

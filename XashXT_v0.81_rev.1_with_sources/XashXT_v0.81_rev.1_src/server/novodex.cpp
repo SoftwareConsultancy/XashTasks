@@ -40,8 +40,8 @@ CPhysicNovodex	NovodexPhysic;
 IPhysicLayer	*WorldPhysic = &NovodexPhysic;
 
 // exports given from physics SDK
-static NxPhysicsSDK* (__cdecl *pNxCreatePhysicsSDK)( NxU32 sdkVersion, NxUserAllocator* allocator = NULL, NxUserOutputStream* outputStream = NULL,
-const NxPhysicsSDKDesc& desc = NxPhysicsSDKDesc(), NxSDKCreateError *errorCode = NULL );
+static NxPhysicsSDK* (__cdecl *pNxCreatePhysicsSDK)( NxU32 sdkVersion, NxUserAllocator* allocator, NxUserOutputStream* outputStream,
+const NxPhysicsSDKDesc& desc, NxSDKCreateError *errorCode );
 static NxCookingInterface *(__cdecl *pNxGetCookingLib)( NxU32 sdk_version_number );
 static void *(__cdecl *pNxReleasePhysicsSDK)( NxPhysicsSDK *sdk );
 static NxUtilLib* (__cdecl *pNxGetUtilLib)( void );
@@ -178,7 +178,7 @@ void CPhysicNovodex :: InitPhysic( void )
 		}
 	}
 
-	m_pPhysics = pNxCreatePhysicsSDK( NX_PHYSICS_SDK_VERSION, NULL, &m_ErrorStream );
+	m_pPhysics = pNxCreatePhysicsSDK(NX_PHYSICS_SDK_VERSION, NULL, &m_ErrorStream, NxPhysicsSDKDesc(), NULL);
 
 	if( !m_pPhysics )
 	{
@@ -628,7 +628,8 @@ NxConvexMesh *CPhysicNovodex :: ConvexMeshFromStudio( entvars_t *pev, int modeli
 	static Vector pos[MAXSTUDIOBONES];
 	static Vector4D q[MAXSTUDIOBONES];
 
-	for( int i = 0; i < phdr->numbones; i++, pbone++, panim++ ) 
+	int i = 0;
+	for( i = 0; i < phdr->numbones; i++, pbone++, panim++ ) 
 	{
 		StudioCalcBoneQuaterion( pbone, panim, q[i] );
 		StudioCalcBonePosition( pbone, panim, pos[i] );
@@ -767,7 +768,8 @@ NxTriangleMesh *CPhysicNovodex :: TriangleMeshFromStudio( entvars_t *pev, int mo
 
 	mstudiotexture_t *ptexture = (mstudiotexture_t *)((byte *)phdr + phdr->textureindex);
 
-	for( int i = 0; i < phdr->numtextures; i++ )
+	int i = 0;
+	for( i = 0; i < phdr->numtextures; i++ )
 	{
 		// skip this mesh it's probably foliage or somewhat
 		if( ptexture[i].flags & STUDIO_NF_MASKED )

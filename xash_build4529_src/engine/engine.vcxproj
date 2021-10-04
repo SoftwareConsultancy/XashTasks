@@ -106,7 +106,8 @@
       <OutputFile>..\temp\engine\!debug/xash.dll</OutputFile>
       <ImportLibrary>.\..\temp\engine\!debug\xash.lib</ImportLibrary>
       <AdditionalLibraryDirectories>./common/soundlib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>msvcrtd.lib;winmm.lib;mpeg_dbg.lib;../utils/vgui/lib/win32_vc6/vgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;msvcrtd.lib;winmm.lib;mpeg_dbg.lib;../utils/vgui/lib/win32_vc6/vgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <CustomBuildStep>
       <Command>copy $(TargetDir)xash.dll $(SolutionDir)..\Xash3D\xash.dll  
@@ -157,7 +158,8 @@ copy $(TargetDir)xash.dll $(SolutionDir)..\Quake\xash.dll</Command>
       <OutputFile>..\temp\engine\!release/xash.dll</OutputFile>
       <ImportLibrary>.\..\temp\engine\!release\xash.lib</ImportLibrary>
       <AdditionalLibraryDirectories>./common/soundlib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>msvcrt.lib;winmm.lib;mpeg.lib;../utils/vgui/lib/win32_vc6/vgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;msvcrt.lib;winmm.lib;mpeg.lib;../utils/vgui/lib/win32_vc6/vgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
     <CustomBuildStep>
       <Command>copy $(TargetDir)xash.dll $(SolutionDir)..\Xash3D\xash.dll  
@@ -165,6 +167,11 @@ copy $(TargetDir)xash.dll $(SolutionDir)..\Paranoia2\xash.dll
 copy $(TargetDir)xash.dll $(SolutionDir)..\Quake\xash.dll</Command>
       <Outputs>$(SolutionDir)..\Xash3D\xash.dll;$(SolutionDir)..\Paranoia2\xash.dll;$(SolutionDir)..\Quake\xash.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Link>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="client\cl_cmds.c" />

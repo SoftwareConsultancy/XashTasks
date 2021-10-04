@@ -336,7 +336,7 @@ Schedule_t	slAssassinFail[] =
 {
 	{
 		tlAssassinFail,
-		ARRAYSIZE ( tlAssassinFail ),
+		ARRAYSIZE_XASH ( tlAssassinFail ),
 		bits_COND_LIGHT_DAMAGE		|
 		bits_COND_HEAVY_DAMAGE		|
 		bits_COND_PROVOKED			|
@@ -367,7 +367,7 @@ Schedule_t slAssassinExposed[] =
 {
 	{
 		tlAssassinExposed,
-		ARRAYSIZE ( tlAssassinExposed ),
+		ARRAYSIZE_XASH ( tlAssassinExposed ),
 		bits_COND_CAN_MELEE_ATTACK1,
 		0,
 		"AssassinExposed",
@@ -395,7 +395,7 @@ Schedule_t	slAssassinTakeCoverFromEnemy[] =
 {
 	{ 
 		tlAssassinTakeCoverFromEnemy,
-		ARRAYSIZE ( tlAssassinTakeCoverFromEnemy ), 
+		ARRAYSIZE_XASH ( tlAssassinTakeCoverFromEnemy ), 
 		bits_COND_NEW_ENEMY |
 		bits_COND_CAN_MELEE_ATTACK1		|
 		bits_COND_HEAR_SOUND,
@@ -428,7 +428,7 @@ Schedule_t	slAssassinTakeCoverFromEnemy2[] =
 {
 	{ 
 		tlAssassinTakeCoverFromEnemy2,
-		ARRAYSIZE ( tlAssassinTakeCoverFromEnemy2 ), 
+		ARRAYSIZE_XASH ( tlAssassinTakeCoverFromEnemy2 ), 
 		bits_COND_NEW_ENEMY |
 		bits_COND_CAN_MELEE_ATTACK2		|
 		bits_COND_HEAR_SOUND,
@@ -457,7 +457,7 @@ Schedule_t	slAssassinTakeCoverFromBestSound[] =
 {
 	{ 
 		tlAssassinTakeCoverFromBestSound,
-		ARRAYSIZE ( tlAssassinTakeCoverFromBestSound ), 
+		ARRAYSIZE_XASH ( tlAssassinTakeCoverFromBestSound ), 
 		bits_COND_NEW_ENEMY,
 		0,
 		"AssassinTakeCoverFromBestSound"
@@ -483,7 +483,7 @@ Schedule_t	slAssassinHide[] =
 {
 	{ 
 		tlAssassinHide,
-		ARRAYSIZE ( tlAssassinHide ), 
+		ARRAYSIZE_XASH ( tlAssassinHide ), 
 		bits_COND_NEW_ENEMY				|
 		bits_COND_SEE_ENEMY				|
 		bits_COND_SEE_FEAR				|
@@ -513,7 +513,7 @@ Schedule_t slAssassinHunt[] =
 {
 	{ 
 		tlAssassinHunt,
-		ARRAYSIZE ( tlAssassinHunt ),
+		ARRAYSIZE_XASH ( tlAssassinHunt ),
 		bits_COND_NEW_ENEMY			|
 		// bits_COND_SEE_ENEMY			|
 		bits_COND_CAN_RANGE_ATTACK1	|
@@ -539,7 +539,7 @@ Schedule_t	slAssassinJump[] =
 {
 	{ 
 		tlAssassinJump,
-		ARRAYSIZE ( tlAssassinJump ), 
+		ARRAYSIZE_XASH ( tlAssassinJump ), 
 		0, 
 		0, 
 		"AssassinJump"
@@ -562,7 +562,7 @@ Schedule_t	slAssassinJumpAttack[] =
 {
 	{ 
 		tlAssassinJumpAttack,
-		ARRAYSIZE ( tlAssassinJumpAttack ), 
+		ARRAYSIZE_XASH ( tlAssassinJumpAttack ), 
 		0, 
 		0,
 		"AssassinJumpAttack"
@@ -592,7 +592,7 @@ Schedule_t	slAssassinJumpLand[] =
 {
 	{ 
 		tlAssassinJumpLand,
-		ARRAYSIZE ( tlAssassinJumpLand ), 
+		ARRAYSIZE_XASH ( tlAssassinJumpLand ), 
 		0, 
 		0,
 		"AssassinJumpLand"

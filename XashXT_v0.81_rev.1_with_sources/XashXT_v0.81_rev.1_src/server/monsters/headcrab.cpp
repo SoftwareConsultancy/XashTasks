@@ -42,7 +42,7 @@ Schedule_t	slHCRangeAttack1[] =
 {
 	{ 
 		tlHCRangeAttack1,
-		ARRAYSIZE ( tlHCRangeAttack1 ), 
+		ARRAYSIZE_XASH ( tlHCRangeAttack1 ), 
 		bits_COND_ENEMY_OCCLUDED	|
 		bits_COND_NO_AMMO_LOADED,
 		0,
@@ -62,7 +62,7 @@ Schedule_t	slHCRangeAttack1Fast[] =
 {
 	{ 
 		tlHCRangeAttack1Fast,
-		ARRAYSIZE ( tlHCRangeAttack1Fast ), 
+		ARRAYSIZE_XASH ( tlHCRangeAttack1Fast ), 
 		bits_COND_ENEMY_OCCLUDED	|
 		bits_COND_NO_AMMO_LOADED,
 		0,
@@ -398,7 +398,7 @@ void CHeadCrab :: StartTask ( Task_t *pTask )
 		{
 			EMIT_SOUND_DYN( edict(), CHAN_WEAPON, pAttackSounds[0], GetSoundVolue(), ATTN_IDLE, 0, GetVoicePitch() );
 			m_IdealActivity = ACT_RANGE_ATTACK1;
-			SetTouch ( LeapTouch );
+			SetTouch ( &CHeadCrab::LeapTouch );
 			break;
 		}
 	default:

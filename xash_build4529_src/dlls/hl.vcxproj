@@ -220,8 +220,8 @@
       <AdditionalDependencies>user32.lib;advapi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>copy $(TargetDir)hl.dll "D:\Xash3D\valve\dlls\hl.dll"</Command>
-      <Outputs>D:\Xash3D\valve\dlls\hl.dll;%(Outputs)</Outputs>
+      <Command>copy $(TargetDir)hl.dll $(SolutionDir)..\Xash3D\valve\dlls\hl.dll</Command>
+      <Outputs>$(SolutionDir)..\Xash3D\valve\dlls\hl.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemGroup>

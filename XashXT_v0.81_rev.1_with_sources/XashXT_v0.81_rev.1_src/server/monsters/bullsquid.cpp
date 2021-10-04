@@ -118,7 +118,7 @@ void CSquidSpit::Shoot( entvars_t *pevOwner, Vector vecStart, Vector vecVelocity
 	pSpit->SetAbsVelocity( vecVelocity );
 	pSpit->pev->owner = ENT(pevOwner);
 
-	pSpit->SetThink ( Animate );
+	pSpit->SetThink ( &CSquidSpit::Animate );
 	pSpit->pev->nextthink = gpGlobals->time + 0.1;
 }
 
@@ -169,7 +169,7 @@ void CSquidSpit :: Touch ( CBaseEntity *pOther )
 		pOther->TakeDamage ( pev, pev, gSkillData.bullsquidDmgSpit, DMG_GENERIC );
 	}
 
-	SetThink ( SUB_Remove );
+	SetThink ( &CBaseEntity::SUB_Remove );
 	pev->nextthink = gpGlobals->time;
 }
 
@@ -386,7 +386,7 @@ BOOL CBullsquid :: FValidateHintType ( short sHint )
 		HINT_WORLD_HUMAN_BLOOD,
 	};
 
-	for ( i = 0 ; i < ARRAYSIZE ( sSquidHints ) ; i++ )
+	for ( i = 0 ; i < ARRAYSIZE_XASH ( sSquidHints ) ; i++ )
 	{
 		if ( sSquidHints[ i ] == sHint )
 		{
@@ -812,7 +812,7 @@ Schedule_t	slSquidRangeAttack1[] =
 {
 	{ 
 		tlSquidRangeAttack1,
-		ARRAYSIZE ( tlSquidRangeAttack1 ), 
+		ARRAYSIZE_XASH ( tlSquidRangeAttack1 ), 
 		bits_COND_NEW_ENEMY			|
 		bits_COND_ENEMY_DEAD		|
 		bits_COND_HEAVY_DAMAGE		|
@@ -836,7 +836,7 @@ Schedule_t slSquidChaseEnemy[] =
 {
 	{ 
 		tlSquidChaseEnemy1,
-		ARRAYSIZE ( tlSquidChaseEnemy1 ),
+		ARRAYSIZE_XASH ( tlSquidChaseEnemy1 ),
 		bits_COND_NEW_ENEMY			|
 		bits_COND_ENEMY_DEAD		|
 		bits_COND_SMELL_FOOD		|
@@ -864,7 +864,7 @@ Schedule_t slSquidHurtHop[] =
 {
 	{
 		tlSquidHurtHop,
-		ARRAYSIZE ( tlSquidHurtHop ),
+		ARRAYSIZE_XASH ( tlSquidHurtHop ),
 		0,
 		0,
 		"SquidHurtHop"
@@ -883,7 +883,7 @@ Schedule_t slSquidSeeCrab[] =
 {
 	{
 		tlSquidSeeCrab,
-		ARRAYSIZE ( tlSquidSeeCrab ),
+		ARRAYSIZE_XASH ( tlSquidSeeCrab ),
 		bits_COND_LIGHT_DAMAGE		|
 		bits_COND_HEAVY_DAMAGE,
 		0,
@@ -914,7 +914,7 @@ Schedule_t slSquidEat[] =
 {
 	{
 		tlSquidEat,
-		ARRAYSIZE( tlSquidEat ),
+		ARRAYSIZE_XASH( tlSquidEat ),
 		bits_COND_LIGHT_DAMAGE	|
 		bits_COND_HEAVY_DAMAGE	|
 		bits_COND_NEW_ENEMY	,
@@ -952,7 +952,7 @@ Schedule_t slSquidSniffAndEat[] =
 {
 	{
 		tlSquidSniffAndEat,
-		ARRAYSIZE( tlSquidSniffAndEat ),
+		ARRAYSIZE_XASH( tlSquidSniffAndEat ),
 		bits_COND_LIGHT_DAMAGE	|
 		bits_COND_HEAVY_DAMAGE	|
 		bits_COND_NEW_ENEMY	,
@@ -986,7 +986,7 @@ Schedule_t slSquidWallow[] =
 {
 	{
 		tlSquidWallow,
-		ARRAYSIZE( tlSquidWallow ),
+		ARRAYSIZE_XASH( tlSquidWallow ),
 		bits_COND_LIGHT_DAMAGE	|
 		bits_COND_HEAVY_DAMAGE	|
 		bits_COND_NEW_ENEMY	,

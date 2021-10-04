@@ -16,7 +16,7 @@
 #ifndef ALERT_H
 #define ALERT_H
 
-#define ARRAYSIZE( p )	(sizeof( p ) / sizeof( p[0] ))
+#define ARRAYSIZE_XASH( p )	(sizeof( p ) / sizeof( p[0] ))
 
 typedef enum
 {

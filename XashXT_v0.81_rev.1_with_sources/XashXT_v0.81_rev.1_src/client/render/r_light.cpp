@@ -249,7 +249,7 @@ void R_SetupLightProjectionTexture( plight_t *pl, cl_entity_t *pEnt )
 		{
 			// setup the sprite
 			const char *sprname = gRenderfuncs.GetFileByIndex( pEnt->curstate.sequence );
-			HSPRITE handle = SPR_LoadEx( sprname, TF_BORDER );
+			HSPRITE_XASH handle = SPR_LoadEx( sprname, TF_BORDER );
 			pl->pSprite = (model_t *)gEngfuncs.GetSpritePointer( handle );
 
 			if( !pl->pSprite )
@@ -447,7 +447,8 @@ void R_PushDlights( void )
 	plight_t	*pl;
 	dlight_t	*dl;
 
-	for( int lnum = 0; lnum < MAX_DLIGHTS; lnum++ )
+	int lnum = 0;
+	for( lnum = 0; lnum < MAX_DLIGHTS; lnum++ )
 	{
 		dl = GET_DYNAMIC_LIGHT( lnum );
 		pl = &cl_plights[MAX_USER_PLIGHTS+lnum];

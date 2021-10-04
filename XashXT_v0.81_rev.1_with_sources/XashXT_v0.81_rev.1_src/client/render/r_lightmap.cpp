@@ -505,7 +505,7 @@ void R_UpdateSurfaceParams( msurface_t *surf )
 			if( !FBitSet( e->curstate.effects, EF_CONVEYOR ))
                               {
 				// additive speed not position-based
-				flRate = abs( flConveyorSpeed ) / flWidth;
+				flRate = fabs( flConveyorSpeed ) / flWidth;
 				flAngle = ( flConveyorSpeed >= 0.0f ) ? 180.0f : 0.0f;
 
 				SinCos( DEG2RAD( flAngle ), &sy, &cy );

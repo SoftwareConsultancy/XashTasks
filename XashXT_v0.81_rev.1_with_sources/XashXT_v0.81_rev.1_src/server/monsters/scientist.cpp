@@ -133,7 +133,7 @@ Schedule_t	slFollow[] =
 {
 	{
 		tlFollow,
-		ARRAYSIZE ( tlFollow ),
+		ARRAYSIZE_XASH ( tlFollow ),
 		bits_COND_NEW_ENEMY |
 		bits_COND_LIGHT_DAMAGE |
 		bits_COND_HEAVY_DAMAGE |
@@ -155,7 +155,7 @@ Schedule_t	slFollowScared[] =
 {
 	{
 		tlFollowScared,
-		ARRAYSIZE ( tlFollowScared ),
+		ARRAYSIZE_XASH ( tlFollowScared ),
 		bits_COND_NEW_ENEMY |
 		bits_COND_HEAR_SOUND |
 		bits_COND_LIGHT_DAMAGE |
@@ -176,7 +176,7 @@ Schedule_t	slFaceTargetScared[] =
 {
 	{
 		tlFaceTargetScared,
-		ARRAYSIZE ( tlFaceTargetScared ),
+		ARRAYSIZE_XASH ( tlFaceTargetScared ),
 		bits_COND_HEAR_SOUND |
 		bits_COND_NEW_ENEMY,
 		bits_SOUND_DANGER,
@@ -193,7 +193,7 @@ Schedule_t	slStopFollowing[] =
 {
 	{
 		tlStopFollowing,
-		ARRAYSIZE ( tlStopFollowing ),
+		ARRAYSIZE_XASH ( tlStopFollowing ),
 		0,
 		0,
 		"StopFollowing"
@@ -216,7 +216,7 @@ Schedule_t	slHeal[] =
 {
 	{
 		tlHeal,
-		ARRAYSIZE ( tlHeal ),
+		ARRAYSIZE_XASH ( tlHeal ),
 		0,	// Don't interrupt or he'll end up running around with a needle all the time
 		0,
 		"Heal"
@@ -236,7 +236,7 @@ Schedule_t	slFaceTarget[] =
 {
 	{
 		tlFaceTarget,
-		ARRAYSIZE ( tlFaceTarget ),
+		ARRAYSIZE_XASH ( tlFaceTarget ),
 		bits_COND_CLIENT_PUSH |
 		bits_COND_NEW_ENEMY |
 		bits_COND_HEAR_SOUND,
@@ -260,7 +260,7 @@ Schedule_t	slSciPanic[] =
 {
 	{
 		tlSciPanic,
-		ARRAYSIZE ( tlSciPanic ),
+		ARRAYSIZE_XASH ( tlSciPanic ),
 		0,
 		0,
 		"SciPanic"
@@ -280,7 +280,7 @@ Schedule_t	slIdleSciStand[] =
 {
 	{ 
 		tlIdleSciStand,
-		ARRAYSIZE ( tlIdleSciStand ), 
+		ARRAYSIZE_XASH ( tlIdleSciStand ), 
 		bits_COND_NEW_ENEMY		|
 		bits_COND_LIGHT_DAMAGE	|
 		bits_COND_HEAVY_DAMAGE	|
@@ -316,7 +316,7 @@ Schedule_t	slScientistCover[] =
 {
 	{ 
 		tlScientistCover,
-		ARRAYSIZE ( tlScientistCover ), 
+		ARRAYSIZE_XASH ( tlScientistCover ), 
 		bits_COND_NEW_ENEMY,
 		0,
 		"ScientistCover"
@@ -338,7 +338,7 @@ Schedule_t	slScientistHide[] =
 {
 	{ 
 		tlScientistHide,
-		ARRAYSIZE ( tlScientistHide ), 
+		ARRAYSIZE_XASH ( tlScientistHide ), 
 		bits_COND_NEW_ENEMY |
 		bits_COND_HEAR_SOUND |
 		bits_COND_SEE_ENEMY |
@@ -366,7 +366,7 @@ Schedule_t	slScientistStartle[] =
 {
 	{ 
 		tlScientistStartle,
-		ARRAYSIZE ( tlScientistStartle ), 
+		ARRAYSIZE_XASH ( tlScientistStartle ), 
 		bits_COND_NEW_ENEMY |
 		bits_COND_SEE_ENEMY |
 		bits_COND_SEE_HATE |
@@ -391,7 +391,7 @@ Schedule_t	slFear[] =
 {
 	{ 
 		tlFear,
-		ARRAYSIZE ( tlFear ), 
+		ARRAYSIZE_XASH ( tlFear ), 
 		bits_COND_NEW_ENEMY,
 		0,
 		"Fear"
@@ -686,7 +686,7 @@ void CScientist :: Spawn( void )
 		pev->skin = 1;
 	
 	MonsterInit();
-	SetUse( FollowerUse );
+	SetUse( &CTalkMonster::FollowerUse );
 }
 
 //=========================================================
@@ -1263,7 +1263,7 @@ void CSittingScientist :: Spawn( )
 	pev->sequence = m_baseSequence + RANDOM_LONG(0,4);
 	ResetSequenceInfo( );
 	
-	SetThink (SittingThink);
+	SetThink (&CSittingScientist::SittingThink);
 	pev->nextthink = gpGlobals->time + 0.1;
 
 	UTIL_DropToFloor( this );

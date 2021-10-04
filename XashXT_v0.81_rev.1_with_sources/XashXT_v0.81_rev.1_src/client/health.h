@@ -58,8 +58,8 @@ public:
 	int	m_HUD_dmg_bio;
 	int	m_HUD_cross;
 private:
-	HSPRITE	m_hSprite;
-	HSPRITE	m_hDamage;
+	HSPRITE_XASH	m_hSprite;
+	HSPRITE_XASH	m_hDamage;
 	int	m_bitsDamage;
 
 	DAMAGE_IMAGE m_dmg[NUM_DMG_TYPES];
