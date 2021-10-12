@@ -1,1 +1,6 @@
-﻿
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(1363,5): warning MSB8012: TargetPath(C:\Users\hp\Documents\GitHub\XashTasks\XashXT_v0.81_rev.1_with_sources\XashXT_v0.81_rev.1_src\temp\client\!debug\client.dll) does not match the Linker's OutputFile property value (C:\Users\hp\Documents\GitHub\XashTasks\XashXT_v0.81_rev.1_with_sources\XashXT_v0.81_rev.1_src\temp\Debug\client.dll). This may cause your project to build incorrectly. To correct this, please make sure that $(OutDir), $(TargetName) and $(TargetExt) property values match the value specified in %(Link.OutputFile).
+  client.vcxproj -> C:\Users\hp\Documents\GitHub\XashTasks\XashXT_v0.81_rev.1_with_sources\XashXT_v0.81_rev.1_src\temp\client\!debug\client.dll
+  Performing Custom Build Step
+  The system cannot find the file specified.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(286,5): error MSB3073: The command "copy C:\Users\hp\Documents\GitHub\XashTasks\XashXT_v0.81_rev.1_with_sources\XashXT_v0.81_rev.1_src\temp\client\!debug\client.dll C:\Users\hp\Documents\GitHub\XashTasks\XashXT_v0.81_rev.1_with_sources\XashXT_v0.81_rev.1_src\..\..\Xash3D\xash\bin\client.dll
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppCommon.targets(286,5): error MSB3073: :VCEnd" exited with code 1.
